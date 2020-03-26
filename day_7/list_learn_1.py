@@ -22,3 +22,4 @@ print(list1)# [400, 5, 7, 100, 200, 1000]
 # 清空列表元素
 list1.clear()
 print(list1)
+list1.del
