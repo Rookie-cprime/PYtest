@@ -27,7 +27,7 @@ class Label:
        root = self.P[i]
        return root
     def add_area(self,label,area):
-        i = findroot(label)
+        i = self.findroot(label)
         self.A[i] += area
 
     def changeroot(self,current_label,new_root):
@@ -43,16 +43,16 @@ class Label:
         self.P[i] = root
         self.A[root] = self.A[root]+self.A[i]
 
-    def union(self,current_label_pre,curent_label_now):
-        if(current_label_pre!=curent_label_now):
-            root1 = findroot(current_label_pre)
-            root2 = findroot(current_label_now)
+    def union(self,current_label_pre,current_label_now):
+        if(current_label_pre!=current_label_now):
+            root1 = self.findroot(current_label_pre)
+            root2 = self.findroot(current_label_now)
             if root1 > root2:
-                changeroot(current_label_pre,root2)
-                add_area(root2,self.A[root1])
+                self.changeroot(current_label_pre,root2)
+                self.add_area(root2,self.A[root1])
             elif root1 < root2:
-                changeroot(current_label_now,root1)
-                add_area(root1,self.A[root2])
+                self.changeroot(current_label_now,root1)
+                self.add_area(root1,self.A[root2])
     
     def flatten(self):#只是一次简单的压缩，主要是优化代码运算速度，也可以不做这步
         for i in range(1, len(self.P)):
