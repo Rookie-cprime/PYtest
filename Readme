@@ -1,1 +1,14 @@
 这是我练习python的一个库，我会把我平常练习的程序传进去
+  1 import re                                                                                                                                            
+  2 
+  3 
+  4 h = open('test.txt','r')
+  5 f = open('result.txt','w+')
+  6 c = []
+  7 for i in h.readlines():
+  8     temp = i;
+  9     handle = re.match(r'ERROR(.*)$',temp)
+ 10     if(handle):
+ 11         c.append(handle.group())
+ 12 
+ 13 result = sorted(c,key = lambda x:int(re.search(r'\d+',x).group()),reverse = True)
